@@ -1,0 +1,20 @@
+.btn,
+.btn:active {
+  font-size: 3rem;
+  font-family: inherit;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 2rem 6rem;
+  border-radius: 4px;
+  border: none;
+  background-color: #f09609;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.05) translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}

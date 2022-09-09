@@ -1,0 +1,30 @@
+.form {
+  padding: 2rem;
+}
+
+h2 {
+  font-size: 2.4rem;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  margin-bottom: 1.6rem;
+  color: #f09609;
+}
+
+label {
+  font-size: 1.6rem;
+  color: #f09609;
+  margin-right: 1.6rem;
+}
+
+input[type="text"] {
+  background-color: #f09609;
+  border: none;
+  padding: 0.6rem 1.8rem;
+  font-family: inherit;
+  font-size: 1.6rem;
+  color: #fff;
+}
+
+input[type="text"]::placeholder {
+  color: #fff;
+}

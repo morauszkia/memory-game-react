@@ -1,0 +1,13 @@
+Program flow:
+
+1. Setup felületet megalkotni - komponens: PlayerForm megkapja propként az adatokat és DeckForm
+- PlayerFormban a színek külön komponensek - iteratívan, hogy a kettőnél különbözzenek
+2. Játékos adatokat megjeleníteni a játékfelületen
+3. Játékosok között váltson
+4. Számolja, hány kártyát szereztek meg: jelezzen, ha már egyik játékos biztos nyert
+5. Kérdezze meg, szeretnének-e tovább játszani
+6. Győztes kihirdetése
+7. Újraindítás lehetősége
+
++: Megnézni a megszerzett kártyákat
++: Más számokat is hozzáadni.

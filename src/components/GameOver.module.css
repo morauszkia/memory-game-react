@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10rem;
+  border-radius: 8px;
+  border: 3px solid #f09609;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  z-index: 500;
+}
+
+.message {
+  font-size: 4rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #a86906;
+}

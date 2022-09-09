@@ -1,0 +1,11 @@
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("https://img.freepik.com/premium-vector/abstract-pattern_1458-342.jpg?w=826");
+  background-size: 200px;
+  background-repeat: repeat;
+  z-index: 100;
+}
