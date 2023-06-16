@@ -1,24 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from 'react';
 
-import "./App.css";
+import './App.css';
 
-import Setup from "./components/Setup";
-import Card from "./components/Card";
-import GameOver from "./components/GameOver";
+import Setup from './components/Setup';
+import Card from './components/Card';
+import GameOver from './components/GameOver';
 
-import list from "./data/data.js";
+import list from './data/data.js';
 
 function App() {
   // STATE VARIABLES
   // Setup
   const defaultPlayers = [
-    { name: "Player 1", color: "#3498db", points: 0, cards: [] },
-    { name: "Player 2", color: "#c0392b", points: 0, cards: [] },
+    { name: 'Player 1', color: '#3498db', points: 0, cards: [] },
+    { name: 'Player 2', color: '#c0392b', points: 0, cards: [] },
   ];
 
+  const [setup, setSetup] = useState(true);
   const [playing, setPlaying] = useState(false);
-  const [deck, setDeck] = useState("animals");
+
+  // Deck
+  const [deck, setDeck] = useState('animals');
   const [cardsNumber, setCardsNumber] = useState(12);
+
+  // Players
   const [players, setPlayers] = useState(defaultPlayers);
 
   // Gameplay
@@ -26,10 +31,11 @@ function App() {
   const [chosenCards, setChosenCards] = useState([]);
   const [remainingCards, setRemainingCards] = useState(null);
   const [activePlayer, setActivePlayer] = useState(players[0]);
+  const [winner, setWinner] = useState(null);
 
   // FUNCTIONS
 
-  const startGame = () => {
+  const startGame = useCallback(() => {
     const selectedCardsList = list[deck]
       .sort(() => 0.5 - Math.random())
       .slice(0, cardsNumber);
@@ -41,8 +47,14 @@ function App() {
       });
 
     setPlaying(true);
+
     setCards(finalList);
     setRemainingCards(finalList.length);
+  }, [deck, cardsNumber]);
+
+  const closeSetup = () => {
+    setSetup(false);
+    startGame();
   };
 
   // Only runs if card not yet flipped or found
@@ -53,8 +65,8 @@ function App() {
     // Update status of chosen card to flipped
     setCards(
       cards.map((card) => {
-        if (card.id === currentCard.id && card.status !== "flipped")
-          return { ...currentCard, status: "flipped" };
+        if (card.id === currentCard.id && card.status !== 'flipped')
+          return { ...currentCard, status: 'flipped' };
         else return card;
       })
     );
@@ -77,7 +89,7 @@ function App() {
       // Add found status to matched cards, leave the rest unchanged
       const newCards = cards.map((card) => {
         if (card.name === selectedCards[0].name) {
-          return { ...card, status: "found" };
+          return { ...card, status: 'found' };
         } else {
           return card;
         }
@@ -89,7 +101,7 @@ function App() {
     } else {
       const newCards = cards.map((card) => {
         // Flip back all cards that have not been found
-        if (card.status !== "found") {
+        if (card.status !== 'found') {
           return { ...card, status: null };
         } else {
           return card;
@@ -104,10 +116,14 @@ function App() {
     setChosenCards([]);
   };
 
+  useEffect(() => {
+    startGame();
+  }, [startGame]);
+
   return (
     <div className="App">
-      {!playing && <Setup onStart={startGame} />}
-      {playing && remainingCards > 0 && (
+      {setup && <Setup onStart={closeSetup} />}
+      {remainingCards > 0 && (
         <div className={`game-field ${`game-field-${cardsNumber}`}`}>
           {cards.map((el) => (
             <Card

@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import classes from "./Card.module.css";
+import classes from './Card.module.css';
 
 const Card = ({ card, onChoice, disabled }) => {
   const handleClick = () => {
@@ -11,22 +11,22 @@ const Card = ({ card, onChoice, disabled }) => {
 
   let specialClass;
   switch (card.status) {
-    case "flipped":
+    case 'flipped':
       specialClass = classes.flipped;
       break;
-    case "found":
+    case 'found':
       specialClass = `${classes.found} ${classes.flipped}`;
       break;
     default:
-      specialClass = "";
+      specialClass = '';
   }
 
   return (
     <div className={`${classes.card} ${specialClass}`} onClick={handleClick}>
-      <div className={`${classes["card-front"]} ${classes["card-side"]}`}>
+      <div className={`${classes['card-front']} ${classes['card-side']}`}>
         <img src={card.pic} alt={card.name} />
       </div>
-      <div className={`${classes["card-back"]} ${classes["card-side"]}`}></div>
+      <div className={`${classes['card-back']} ${classes['card-side']}`}></div>
     </div>
   );
 };
