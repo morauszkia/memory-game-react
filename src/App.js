@@ -35,22 +35,32 @@ function App() {
 
   // FUNCTIONS
 
+  // Randomly select cards from full list
+  const selectCards = useCallback(
+    () => list[deck].sort(() => 0.5 - Math.random()).slice(0, cardsNumber),
+    [deck, cardsNumber]
+  );
+
+  // Create & shuffle deck + add id & status
+  const createDeck = useCallback(
+    (cardsList) =>
+      cardsList
+        .concat(cardsList)
+        .sort(() => 0.5 - Math.random())
+        .map((el, idx) => {
+          return { ...el, id: idx, status: null };
+        }),
+    []
+  );
+
   const startGame = useCallback(() => {
-    const selectedCardsList = list[deck]
-      .sort(() => 0.5 - Math.random())
-      .slice(0, cardsNumber);
-    const finalList = selectedCardsList
-      .concat(selectedCardsList)
-      .sort(() => 0.5 - Math.random())
-      .map((el, idx) => {
-        return { ...el, id: idx, status: null };
-      });
+    const selectedCardsList = selectCards();
+    const finalList = createDeck(selectedCardsList);
 
     setPlaying(true);
-
     setCards(finalList);
     setRemainingCards(finalList.length);
-  }, [deck, cardsNumber]);
+  }, [selectCards, createDeck]);
 
   const closeSetup = () => {
     setSetup(false);
